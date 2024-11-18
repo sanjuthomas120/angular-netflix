@@ -1,0 +1,227 @@
+<div
+  class="fixed top-0 w-full h-[40px] flex justify-around bg-[#111] lg:h-[50px] z-10"
+>
+  <img
+    class="fixed left-[20px] top-[15px] w-[40px] lg:w-[80px]"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
+    alt="Netflix Logo"
+  />
+  <div
+    class="text-white flex justify-center items-center gap-3 font-bold text-xs lg:text-sm"
+  >
+    <a routerLink="/">Home</a>
+    <a routerLink="/">TV Shows</a>
+    <a routerLink="/">Movies</a>
+    <a routerLink="/">New & Popular</a>
+    <a routerLink="/">My List</a>
+  </div>
+  <div
+    class="text-white flex justify-end items-center gap-3 font-bold text-sm rounded-sm my-2"
+  >
+    <div
+      class="text-white flex justify-center items-center gap-3 font-bold text-sm border rounded-sm my-2 border-[#fefefe]"
+    >
+      <i class="fa-solid fa-magnifying-glass px-3"></i>
+      <input type="text" class="p-1 m-1 bg-black outline-none" />
+    </div>
+    <button class="border-none tracking-wide font-semibold">CHILDREN</button>
+    <i class="fa-solid fa-gift px-1 text-lg"></i>
+    <i class="fa-regular fa-bell px-1 text-lg"></i>
+  </div>
+  <img
+    class="fixed right-[20px] top-[10px] w-[30px] rounded-full"
+    src="https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
+    alt="Avatar"
+  />
+</div>
+<div *ngIf="movie">
+  <div
+    class="banner bg-cover bg-top h-[35rem] text-white"
+    [ngStyle]="{
+      'background-image': movie
+        ? 'url(' + imageUrl + movie.backdrop_path + ')'
+        : ''
+    }"
+  >
+    <div class="pt-[190px] pl-[15px] h-[190px]">
+      <h1 class="text-[3rem] font-[800] pb-[0.3]">
+        {{ movie?.title || movie?.name || "" }}
+      </h1>
+
+      <div>
+        <button
+          class="text-white outline-none border-none font-[700] rounded-md py-[0.5rem] px-[2rem] cursor-pointer mr-[1rem] bg-[rgba(51,51,51,0.5)] hover:text-black hover:bg-[#e6e6e6]"
+        >
+          Play
+        </button>
+        <button
+          class="text-white outline-none border-none font-[700] rounded-md py-[0.5rem] px-[2rem] cursor-pointer mr-[1rem] bg-[rgba(51,51,51,0.5)] hover:text-black hover:bg-[#e6e6e6]"
+        >
+          My List
+        </button>
+      </div>
+
+      <h1
+        class="w-[45rem] leading-6 pt-4 text-base h-[110px] max-w-[360px] overflow-hidden"
+      >
+        {{ movie?.overview || "No description available" }}
+      </h1>
+    </div>
+  </div>
+</div>
+<main>
+<div *ngIf="originals">
+  <div class="ml-[15px] text-white">
+    <h2 class="text-[20px] pt-5 font-bold">Netflix Originals</h2>
+    <div class="flex p-[20px] overflow-x-scroll overflow-y-hidden posters">
+      <div
+        *ngFor="let original of originals"
+        [attr.key]="original.id"
+        class="relative"
+      >
+        <img
+          [src]="imageUrl + original.poster_path"
+          [alt]="original.title || original.name"
+          class="min-h-[250px] min-w-[210px] px-3 cursor-pointer transition-transform duration-500 ease-in-out transform hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="actions">
+  <div class="ml-[15px] text-white">
+    <h2 class="text-[20px] pl-3 font-bold">Action Movies</h2>
+    <div class="flex p-[20px] overflow-x-scroll overflow-y-hidden posters">
+      <div
+        *ngFor="let action of actions"
+        [attr.key]="action.id"
+        class="relative"
+      >
+        <img
+          [src]="imageUrl + action.backdrop_path"
+          [alt]="action.title || action.name"
+          class="max-h-[180px] min-w-[350px] px-3 cursor-pointer transition-transform duration-500 ease-in-out transform hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="comedies">
+  <div class="ml-[15px] text-white">
+    <h2 class="text-[20px] pl-3 font-bold">Comedy Movies</h2>
+    <div class="flex p-[20px] overflow-x-scroll overflow-y-hidden posters">
+      <div
+        *ngFor="let comedy of comedies"
+        [attr.key]="comedy.id"
+        class="relative"
+      >
+        <img
+          [src]="imageUrl + comedy.backdrop_path"
+          [alt]="comedy.title || comedy.name"
+          class="min-h-[180px] min-w-[350px] px-3 cursor-pointer transition-transform duration-500 ease-in-out transform hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="crimes">
+  <div class="ml-[15px] text-white">
+    <h2 class="text-[20px] pl-3 font-bold">Crime Movies</h2>
+    <div class="flex p-[20px] overflow-x-scroll overflow-y-hidden posters">
+      <div
+        *ngFor="let crime of crimes"
+        [attr.key]="crime.id"
+        class="relative"
+      >
+        <img
+          [src]="imageUrl + crime.backdrop_path"
+          [alt]="crime.title || crime.name"
+          class="min-h-[180px] min-w-[350px] px-3 cursor-pointer transition-transform duration-500 ease-in-out transform hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="dramas">
+  <div class="ml-[15px] text-white">
+    <h2 class="text-[20px] pt-5 font-bold">Dramas</h2>
+    <div class="flex p-[20px] overflow-x-scroll overflow-y-hidden posters">
+      <div
+        *ngFor="let drama of dramas"
+        [attr.key]="drama.id"
+        class="relative"
+      >
+        <img
+          [src]="imageUrl + drama.poster_path"
+          [alt]="drama.title || drama.name"
+          class="min-h-[250px] min-w-[210px] px-3 cursor-pointer transition-transform duration-500 ease-in-out transform hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="bg-black text-white py-8">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-start mb-6">
+      <img src="https://pngimg.com/uploads/netflix/netflix_PNG25.png" alt="Netflix" class="h-10 w-20 cursor-pointer">
+    </div>
+
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+    
+      <div>
+        <h5 class="text-lg font-semibold mb-4">About</h5>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-gray-400">About Us</a></li>
+          <li><a href="#" class="hover:text-gray-400">Contact</a></li>
+          <li><a href="#" class="hover:text-gray-400">Jobs</a></li>
+          <li><a href="#" class="hover:text-gray-400">Press</a></li>
+        </ul>
+      </div>
+
+     
+      <div>
+        <h5 class="text-lg font-semibold mb-4">Help</h5>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-gray-400">FAQ</a></li>
+          <li><a href="#" class="hover:text-gray-400">Account</a></li>
+          <li><a href="#" class="hover:text-gray-400">Support</a></li>
+          <li><a href="#" class="hover:text-gray-400">How to Watch</a></li>
+        </ul>
+      </div>
+
+ 
+      <div>
+        <h5 class="text-lg font-semibold mb-4">Legal</h5>
+        <ul class="space-y-2">
+          <li><a href="#" class="hover:text-gray-400">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-gray-400">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-gray-400">Cookie Preferences</a></li>
+          <li><a href="#" class="hover:text-gray-400">Legal Notices</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="text-lg font-semibold mb-4">Follow Us</h5>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-sm">
+      <p>© 2024 Netflix Clone. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
