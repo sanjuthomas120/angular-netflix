@@ -21,5 +21,5 @@ This is a Netflix clone built using **Angular** and **Tailwind CSS**. It mimics 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/netflix-clone.git
-   cd netflix-clone
+   git clone https://github.com/sanjuthomas120/angular-netflix.git
+   cd angular-netflix
